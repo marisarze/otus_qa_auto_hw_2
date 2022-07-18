@@ -57,9 +57,3 @@ def test_add_area_negative(arbitrary_class):
     expected = f"Expected to receive the argument of type 'Figure' or its descendants, but received type {type(arbitrary_class)}."
     result = e.value.args[0]
     assert result == expected
-
-test_attributes_positive()
-test_init_positive()
-test_init_negative(arbitrary_class)
-test_add_area_method_positive()
-test_add_area_negative(arbitrary_class)
