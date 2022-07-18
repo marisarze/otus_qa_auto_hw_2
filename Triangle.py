@@ -1,11 +1,12 @@
 
 import math
-from .Figure import Figure
+from Figure import Figure
 
 
 class Triangle(Figure):
 
     def __init__(self, name, side1, side2, side3):
+        super().__init__(name)
         if side1 < 0 or side2 < 0 or side3 < 0:
             raise ValueError("The lengths of all triangle sides must not be negative.")
         if side1 + side2 < side3 \
@@ -24,5 +25,6 @@ class Triangle(Figure):
         return self.side1+self.side2+self.side3
 
     def calculate_area(self):
-        perimeter = self.calculate_perimeter()
-        return math.sqrt(perimeter*(perimeter-self.side1)*(perimeter-self.side2)*(perimeter-self.side3))
+        half_perimeter = self.calculate_perimeter()/2
+        return math.sqrt(half_perimeter*(half_perimeter-self.side1)*(half_perimeter-self.side2)*(half_perimeter-self.side3))
+

@@ -10,39 +10,46 @@ from fixtures import arbitrary_class
 
 
 def test_attributes_positive():
-    assert Figure.name == None
-    assert Figure.perimeter == None
-    assert Figure.area == None
+    assert Circle.name == None
+    assert Circle.perimeter == None
+    assert Circle.area == None
 
 
 def test_init_positive():
-    figure = Figure("some figure")
-    assert figure.name == "some figure"
-    assert figure.perimeter == None
-    assert figure.area == None
+    circle = Circle("some circle", 3)
+    assert isinstance(circle, Figure)
+    assert circle.name == "some circle"
+    assert circle.perimeter == 6 * math.pi
+    assert circle.area == 9 * math.pi
 
 
 def test_init_negative(arbitrary_class):
     with pytest.raises(TypeError) as e:
-        figure = Figure(arbitrary_class)
+        circle = Circle(arbitrary_class, 4)
     expected = f"Name of the Figure instance must be of type 'str' bur received type {type(arbitrary_class)}."
+    result = e.value.args[0]
+    assert result == expected
+
+    with pytest.raises(ValueError) as e:
+        circle = Circle("new circle", -4)
+    expected = "The lengths of all circle sides must not be negative."
     result = e.value.args[0]
     assert result == expected
     
 
-
 def test_add_area_method_positive():
-    figure = Figure("")
-    figure.area = 10
-    circle = Circle("circle", 1)
-    result = figure.add_area(circle)
-    assert result == 10 + math.pi
+    circle = Circle("circle", 7)
+    figure = Figure("figure name")
+    figure.area = 100
+    result = circle.add_area(figure)
+    assert result == 100 + 49 * math.pi
 
 
 def test_add_area_negative(arbitrary_class):
     with pytest.raises(TypeError) as e:
-        figure = Figure("")
-        dummy = figure.add_area(arbitrary_class)
+        circle = Circle("nice circle", 7)
+        dummy = circle.add_area(arbitrary_class)
     expected = f"Expected to receive the argument of type 'Figure' or its descendants, but received type {type(arbitrary_class)}."
     result = e.value.args[0]
     assert result == expected
+

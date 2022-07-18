@@ -7,10 +7,11 @@ class Figure:
 
     def __init__(self, name):
         if not isinstance(name, str):
-            raise TypeError(f"Name of the {type(self)} must be of type 'str' bur received type '{type(name)}'.")
+            raise TypeError(f"Name of the Figure instance must be of type 'str' bur received type {type(name)}.")
+        self.name = name
 
 
-    def add_area(self, figure):
-        if not isinstance(figure, Figure):
-            raise TypeError(f"Expected to receive the argument of type 'Figure', but received type '{type(figure)}'.")
-        return self.area + figure.area
+    def add_area(self, other):
+        if not isinstance(other, Figure):
+            raise TypeError(f"Expected to receive the argument of type 'Figure' or its descendants, but received type {type(other)}.")
+        return self.area + other.area
