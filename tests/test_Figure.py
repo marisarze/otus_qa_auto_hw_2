@@ -30,7 +30,6 @@ def test_init_negative(arbitrary_class):
     assert result == expected
     
 
-
 def test_add_area_method_positive():
     figure = Figure("")
     figure.area = 10

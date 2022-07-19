@@ -9,12 +9,13 @@ class Rectangle(Figure):
             raise ValueError("The lengths of all rectangle sides must not be negative.")
         self.side1 = side1
         self.side2 = side2
-        self.perimeter = self.calculate_perimeter()
-        self.area = self.calculate_area()
 
     
-    def calculate_perimeter(self):
+    @property
+    def perimeter(self):
         return 2*(self.side1+self.side2)
 
-    def calculate_area(self):
+
+    @property
+    def area(self):
         return self.side1*self.side2
