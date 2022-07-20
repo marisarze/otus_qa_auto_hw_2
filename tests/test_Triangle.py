@@ -40,18 +40,6 @@ def test_init_negative(arbitrary_class):
     expected = "A triangle with such side lengths does not exist."
     result = e.value.args[0]
     assert result == expected
-    
-
-def test_set_perimeter_do_not_matter():
-    triangle = Triangle("awesome triangle", 6, 8, 10)
-    triangle.perimeter = 1
-    assert triangle.perimeter == 24
-
-
-def test_set_area_do_not_matter():
-    triangle = Triangle("awesome triangle", 6, 8, 10)
-    triangle.area = 5
-    assert triangle.area == 24
 
 
 def test_add_area_method_positive():
@@ -67,5 +55,32 @@ def test_add_area_negative(arbitrary_class):
         triangle = Triangle("nice triangle", 4, 5, 7)
         dummy = triangle.add_area(arbitrary_class)
     expected = f"Expected to receive the argument of type 'Figure' or its descendants, but received type {type(arbitrary_class)}."
+    result = e.value.args[0]
+    assert result == expected
+
+
+def test_set_name_negative():
+    with pytest.raises(AttributeError) as e:
+        triangle = Triangle("triangle", 1, 2, 3)
+        triangle.name = "free name"
+    expected = "can't set attribute"
+    result = e.value.args[0]
+    assert result == expected
+
+
+def test_set_perimeter_negative():
+    with pytest.raises(AttributeError) as e:
+        triangle = Triangle("triangle", 1, 2, 3)
+        triangle.perimeter = 67
+    expected = "can't set attribute"
+    result = e.value.args[0]
+    assert result == expected
+
+
+def test_set_area_negative():
+    with pytest.raises(AttributeError) as e:
+        triangle = Triangle("triangle", 2, 3, 4)
+        triangle.area = 56
+    expected = "can't set attribute"
     result = e.value.args[0]
     assert result == expected

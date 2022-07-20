@@ -34,18 +34,6 @@ def test_init_negative(arbitrary_class):
     expected = "The lengths of all rectangle sides must not be negative."
     result = e.value.args[0]
     assert result == expected
-
-
-def test_set_perimeter_do_not_matter():
-    rectangle = Rectangle("awesome rectangle", 1, 2)
-    rectangle.perimeter = 1
-    assert rectangle.perimeter == 6
-
-
-def test_set_area_do_not_matter():
-    rectangle = Rectangle("awesome rectangle", 3, 5)
-    rectangle.area = 5
-    assert rectangle.area == 15
     
 
 def test_add_area_method_positive():
@@ -61,5 +49,32 @@ def test_add_area_negative(arbitrary_class):
         rectangle = Rectangle("nice rectangle", 5, 7)
         dummy = rectangle.add_area(arbitrary_class)
     expected = f"Expected to receive the argument of type 'Figure' or its descendants, but received type {type(arbitrary_class)}."
+    result = e.value.args[0]
+    assert result == expected
+
+
+def test_set_name_negative():
+    with pytest.raises(AttributeError) as e:
+        rectangle = Rectangle("rectangle", 1, 2)
+        rectangle.name = "free name"
+    expected = "can't set attribute"
+    result = e.value.args[0]
+    assert result == expected
+
+
+def test_set_perimeter_negative():
+    with pytest.raises(AttributeError) as e:
+        rectangle = Rectangle("rectangle", 1, 2)
+        rectangle.perimeter = 67
+    expected = "can't set attribute"
+    result = e.value.args[0]
+    assert result == expected
+
+
+def test_set_area_negative():
+    with pytest.raises(AttributeError) as e:
+        rectangle = Rectangle("rectangle", 2, 3)
+        rectangle.area = 56
+    expected = "can't set attribute"
     result = e.value.args[0]
     assert result == expected
