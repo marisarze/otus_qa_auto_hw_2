@@ -8,12 +8,6 @@ from Triangle import Triangle
 from fixtures import arbitrary_class
 
 
-def test_attributes_positive():
-    assert Triangle.name == None
-    assert Triangle.perimeter == None
-    assert Triangle.area == None
-
-
 def test_init_positive():
     triangle = Triangle("some triangle", 3, 4, 5)
     assert isinstance(triangle, Figure)
@@ -41,6 +35,18 @@ def test_init_negative(arbitrary_class):
     result = e.value.args[0]
     assert result == expected
     
+
+def test_set_perimeter_do_not_matter():
+    triangle = Triangle("awesome triangle", 6, 8, 10)
+    triangle.perimeter = 1
+    assert triangle.perimeter == 24
+
+
+def test_set_area_do_not_matter():
+    triangle = Triangle("awesome triangle", 6, 8, 10)
+    triangle.area = 5
+    assert triangle.area == 24
+
 
 def test_add_area_method_positive():
     triangle = Triangle("triangle", 6, 8, 10)

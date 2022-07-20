@@ -8,12 +8,6 @@ from Square import Square
 from fixtures import arbitrary_class
 
 
-def test_attributes_positive():
-    assert Square.name == None
-    assert Square.perimeter == None
-    assert Square.area == None
-
-
 def test_init_positive():
     square = Square("some square", 5)
     assert isinstance(square, Figure)
@@ -34,6 +28,18 @@ def test_init_negative(arbitrary_class):
     expected = "The lengths of all square sides must not be negative."
     result = e.value.args[0]
     assert result == expected
+
+
+def test_set_perimeter_do_not_matter():
+    square = Square("awesome square", 5)
+    square.perimeter = 1
+    assert square.perimeter == 20
+
+
+def test_set_area_do_not_matter():
+    square = Square("awesome square", 6)
+    square.area = 5
+    assert square.area == 36
     
 
 def test_add_area_method_positive():

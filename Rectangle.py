@@ -19,3 +19,13 @@ class Rectangle(Figure):
     @property
     def area(self):
         return self.side1*self.side2
+
+
+    @perimeter.setter
+    def perimeter(self, value):
+        pass
+
+
+    @area.setter
+    def area(self, value):
+        pass

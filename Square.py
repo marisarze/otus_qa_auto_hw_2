@@ -19,3 +19,12 @@ class Square(Figure):
     def area(self):
         return self.side**2
 
+
+    @perimeter.setter
+    def perimeter(self, value):
+        pass
+
+
+    @area.setter
+    def area(self, value):
+        pass

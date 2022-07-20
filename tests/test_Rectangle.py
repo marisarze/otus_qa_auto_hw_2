@@ -8,12 +8,6 @@ from Rectangle import Rectangle
 from fixtures import arbitrary_class
 
 
-def test_attributes_positive():
-    assert Rectangle.name == None
-    assert Rectangle.perimeter == None
-    assert Rectangle.area == None
-
-
 def test_init_positive():
     rectangle = Rectangle("some rectangle", 4, 5)
     assert isinstance(rectangle, Figure)
@@ -34,6 +28,18 @@ def test_init_negative(arbitrary_class):
     expected = "The lengths of all rectangle sides must not be negative."
     result = e.value.args[0]
     assert result == expected
+
+
+def test_set_perimeter_do_not_matter():
+    rectangle = Rectangle("awesome rectangle", 1, 2)
+    rectangle.perimeter = 1
+    assert rectangle.perimeter == 6
+
+
+def test_set_area_do_not_matter():
+    rectangle = Rectangle("awesome rectangle", 3, 5)
+    rectangle.area = 5
+    assert rectangle.area == 15
     
 
 def test_add_area_method_positive():

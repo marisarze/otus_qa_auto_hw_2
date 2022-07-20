@@ -9,12 +9,6 @@ from Circle import Circle
 from fixtures import arbitrary_class
 
 
-def test_attributes_positive():
-    assert Circle.name == None
-    assert Circle.perimeter == None
-    assert Circle.area == None
-
-
 def test_init_positive():
     circle = Circle("some circle", 3)
     assert isinstance(circle, Figure)
@@ -35,6 +29,18 @@ def test_init_negative(arbitrary_class):
     expected = "The lengths of all circle sides must not be negative."
     result = e.value.args[0]
     assert result == expected
+
+
+def test_set_perimeter_do_not_matter():
+    circle = Circle("awesome circle", 5)
+    circle.perimeter = 1
+    assert circle.perimeter == 10 * math.pi
+
+
+def test_set_area_do_not_matter():
+    circle = Circle("awesome circle", 6)
+    circle.area = 5
+    assert circle.area == 36 * math.pi
     
 
 def test_add_area_method_positive():

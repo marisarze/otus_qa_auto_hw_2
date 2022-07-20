@@ -20,15 +20,20 @@ class Triangle(Figure):
 
     @property
     def perimeter(self):
-        if hasattr(self, "side1") and hasattr(self, "side2") and hasattr(self, "side3"):
-            return self.side1+self.side2+self.side3
-        return None
+        return self.side1+self.side2+self.side3
 
 
     @property
     def area(self):
-        if hasattr(self, "side1") and hasattr(self, "side2") and hasattr(self, "side3"):
-            half_perimeter = self.perimeter/2
-            return math.sqrt(half_perimeter*(half_perimeter-self.side1)*(half_perimeter-self.side2)*(half_perimeter-self.side3))
-        return None
+        half_perimeter = self.perimeter/2
+        return math.sqrt(half_perimeter*(half_perimeter-self.side1)*(half_perimeter-self.side2)*(half_perimeter-self.side3))
 
+
+    @perimeter.setter
+    def perimeter(self, value):
+        pass
+
+
+    @area.setter
+    def area(self, value):
+        pass

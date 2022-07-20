@@ -56,11 +56,4 @@ class Figure:
             raise ValueError(f"Area value must be non-negative.")
         self.__area = value
 
-    
-    
 
-a =  Figure.name
-figure = Figure("some")
-print("two", figure.perimeter)
-print("three", figure.name)
-figure.perimeter = 10
