@@ -23,6 +23,12 @@ def test_init_negative(arbitrary_class):
     result = e.value.args[0]
     assert result == expected
 
+    with pytest.raises(TypeError) as e:
+        square = Square("bad square", arbitrary_class)
+    expected = f"A side of the square must be 'float' or 'int' type but received {type(arbitrary_class)}."
+    result = e.value.args[0]
+    assert result == expected
+
     with pytest.raises(ValueError) as e:
         square = Square("new square", -4)
     expected = "The lengths of all square sides must not be negative."

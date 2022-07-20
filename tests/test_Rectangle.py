@@ -23,6 +23,12 @@ def test_init_negative(arbitrary_class):
     result = e.value.args[0]
     assert result == expected
 
+    with pytest.raises(TypeError) as e:
+        rectangle = Rectangle("bad rectangle", arbitrary_class, 4)
+    expected = f"side1 of the rectangle must be 'float' or 'int' type but received {type(arbitrary_class)}."
+    result = e.value.args[0]
+    assert result == expected
+
     with pytest.raises(ValueError) as e:
         rectangle = Rectangle("new rectangle", -4, 5)
     expected = "The lengths of all rectangle sides must not be negative."

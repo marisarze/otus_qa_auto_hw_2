@@ -24,9 +24,15 @@ def test_init_negative(arbitrary_class):
     result = e.value.args[0]
     assert result == expected
 
+    with pytest.raises(TypeError) as e:
+        circle = Circle("bad circle", arbitrary_class)
+    expected = f"Radius of the circle must be 'float' or 'int' type but received {type(arbitrary_class)}."
+    result = e.value.args[0]
+    assert result == expected    
+
     with pytest.raises(ValueError) as e:
         circle = Circle("new circle", -4)
-    expected = "The lengths of all circle sides must not be negative."
+    expected = "Radius of a circle must not be negative."
     result = e.value.args[0]
     assert result == expected
 
