@@ -34,12 +34,3 @@ class Triangle(Figure):
         half_perimeter = self.perimeter/2
         return math.sqrt(half_perimeter*(half_perimeter-self.side1)*(half_perimeter-self.side2)*(half_perimeter-self.side3))
 
-
-    @perimeter.setter
-    def perimeter(self, value):
-        pass
-
-
-    @area.setter
-    def area(self, value):
-        pass

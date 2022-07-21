@@ -21,13 +21,3 @@ class Circle(Figure):
     @property
     def area(self):
         return math.pi * self.radius**2
-
-    
-    @perimeter.setter
-    def perimeter(self, value):
-        pass
-
-
-    @area.setter
-    def area(self, value):
-        pass

@@ -59,13 +59,10 @@ def test_add_area_negative(arbitrary_class):
     assert result == expected
 
 
-def test_set_name_negative():
-    with pytest.raises(AttributeError) as e:
-        triangle = Triangle("triangle", 1, 2, 3)
-        triangle.name = "free name"
-    expected = "can't set attribute"
-    result = e.value.args[0]
-    assert result == expected
+def test_set_name_positive():
+    triangle = Triangle("triangle", 3, 5, 6)
+    triangle.name = "free name"
+    assert triangle.name == "free name"
 
 
 def test_set_perimeter_negative():

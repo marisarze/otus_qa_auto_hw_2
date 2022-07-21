@@ -36,18 +36,6 @@ def test_init_negative(arbitrary_class):
     assert result == expected
 
 
-def test_set_perimeter_do_not_matter():
-    square = Square("awesome square", 5)
-    square.perimeter = 1
-    assert square.perimeter == 20
-
-
-def test_set_area_do_not_matter():
-    square = Square("awesome square", 6)
-    square.area = 5
-    assert square.area == 36
-    
-
 def test_add_area_method_positive():
     square = Square("square", 10)
     figure = Figure("figure name")
@@ -61,6 +49,30 @@ def test_add_area_negative(arbitrary_class):
         square = Square("nice square", 7)
         dummy = square.add_area(arbitrary_class)
     expected = f"Expected to receive the argument of type 'Figure' or its descendants, but received type {type(arbitrary_class)}."
+    result = e.value.args[0]
+    assert result == expected
+
+
+def test_set_name_positive():
+    square = Square("square", 3)
+    square.name = "free name"
+    assert square.name == "free name"
+
+
+def test_set_perimeter_negative():
+    with pytest.raises(AttributeError) as e:
+        square = Square("square", 2)
+        square.perimeter = 67
+    expected = "can't set attribute"
+    result = e.value.args[0]
+    assert result == expected
+
+
+def test_set_area_negative():
+    with pytest.raises(AttributeError) as e:
+        square = Square("square", 3)
+        square.area = 56
+    expected = "can't set attribute"
     result = e.value.args[0]
     assert result == expected
 

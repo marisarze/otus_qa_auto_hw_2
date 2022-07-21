@@ -35,18 +35,6 @@ def test_init_negative(arbitrary_class):
     expected = "Radius of a circle must not be negative."
     result = e.value.args[0]
     assert result == expected
-
-
-def test_set_perimeter_do_not_matter():
-    circle = Circle("awesome circle", 5)
-    circle.perimeter = 1
-    assert circle.perimeter == 10 * math.pi
-
-
-def test_set_area_do_not_matter():
-    circle = Circle("awesome circle", 6)
-    circle.area = 5
-    assert circle.area == 36 * math.pi
     
 
 def test_add_area_method_positive():
@@ -65,3 +53,31 @@ def test_add_area_negative(arbitrary_class):
     result = e.value.args[0]
     assert result == expected
 
+
+def test_set_name_positive():
+    circle = Circle("circle", 3)
+    circle.name = "free name"
+    assert circle.name == "free name"
+
+
+def test_set_perimeter_negative():
+    with pytest.raises(AttributeError) as e:
+        circle = Circle("circle", 2)
+        circle.perimeter = 67
+    expected = "can't set attribute"
+    result = e.value.args[0]
+    assert result == expected
+
+
+def test_set_area_negative():
+    with pytest.raises(AttributeError) as e:
+        circle = Circle("circle", 3)
+        circle.area = 56
+    expected = "can't set attribute"
+    result = e.value.args[0]
+    assert result == expected
+
+
+circle = Circle("circle", 3)
+circle.name = "free name"
+print(circle.name)
